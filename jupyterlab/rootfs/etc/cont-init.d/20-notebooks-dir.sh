@@ -13,13 +13,13 @@ if ! bashio::fs.directory_exists '/config/notebooks'; then
         https://github.com/home-assistant/home-assistant-notebooks.git \
         "${BOOKS}home-assistant" \
             || bashio::exit.nok \
-                'Failed installing Home Assistant example notebooks'
+                'Failed installing Home Assistant example notebooks' && rm -rf "${BOOKS}home-assistant"
 
     git clone -b master --single-branch --depth 1 \
         https://github.com/bokeh/bokeh-notebooks.git \
         "${BOOKS}bokeh-examples" \
             || bashio::exit.nok \
-                'Failed installing Bokeh example notebooks'
+                'Failed installing Bokeh example notebooks' && rm -rf "${BOOKS}bokeh-examples"
 
     ln -sf \
         "${BOOKS}home-assistant/~ GETTING STARTED.ipynb" \
